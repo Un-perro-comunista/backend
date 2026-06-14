@@ -2,7 +2,7 @@ import os
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-import tflite_runtime.interpreter as tflite
+import tensorflow as tf
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from tensorflow.keras.preprocessing import image
@@ -14,7 +14,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Configuración del modelo TFLite
-interpreter = tflite.Interpreter(model_path="brain_tumor_cnn.tflite")
+interpreter = tf.lite.Interpreter(model_path="brain_tumor_cnn.tflite")
 interpreter.allocate_tensors()
 
 input_details = interpreter.get_input_details()
